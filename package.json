@@ -6,14 +6,12 @@
   "author": "alandev2 <alanworking1@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "npx lint-staged",
+    "test": "jest --watchAll",
+    "test:staged": "jest",
     "postinstall": "husky install"
   },
-  "lint-staged": {
-    "*.js": [
-      "npx standard --fix",
-      "git add"
-    ]
+  "standard": {
+    "env": ["jest"]
   },
   "devDependencies": {
     "husky": "^5.1.1",
