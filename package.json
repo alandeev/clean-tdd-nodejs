@@ -6,12 +6,15 @@
   "author": "alandev2 <alanworking1@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watchAll --silent --colors --noStackTrace",
-    "test:staged": "jest --passWithNoTests --findRelatedTests --silent --noStackTrace",
+    "test": "jest --watchAll --silent --colors",
+    "test:staged": "jest --passWithNoTests --silent",
+    "test:ci": "jest --coverage",
     "postinstall": "husky install"
   },
   "standard": {
-    "env": ["jest"]
+    "env": [
+      "jest"
+    ]
   },
   "devDependencies": {
     "husky": "^5.1.1",

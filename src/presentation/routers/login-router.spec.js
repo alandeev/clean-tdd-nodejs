@@ -248,7 +248,7 @@ describe('Login router', () => {
     expect(httpResponse.body).toEqual(new ServerError())
   })
 
-  test('Should call EmailValidator with correct email', async () => {
+  test('Should call EmailValidator with correct email.', async () => {
     const { sut, emailValidatorSpy } = makeSut()
     const httpRequest = {
       body: {
