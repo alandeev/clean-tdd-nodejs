@@ -6,9 +6,11 @@
   "author": "alandev2 <alanworking1@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watchAll --silent --colors",
-    "test:staged": "jest --passWithNoTests --silent",
-    "test:ci": "jest --coverage",
+    "test": "jest --silent --colors --passWithNoTests",
+    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js",
+    "test:staged": "npm test",
+    "test:ci": "npm test -- --coverage",
     "postinstall": "husky install"
   },
   "standard": {
