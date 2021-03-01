@@ -6,10 +6,25 @@ const LoginRouter = require('./login-router')
 
 const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()
+  const emailValidator = makeEmailValidator()
+
   return {
-    sut: new LoginRouter(authUseCaseSpy),
-    authUseCaseSpy
+    sut: new LoginRouter(authUseCaseSpy, emailValidator),
+    authUseCaseSpy,
+    emailValidator
   }
+}
+
+const makeEmailValidator = () => {
+  class EmailValidatorSpy {
+    isValid (email) {
+      return this.isEmailValid
+    }
+  }
+
+  const emailValidatorSpy = new EmailValidatorSpy()
+  emailValidatorSpy.isEmailValid = true
+  return emailValidatorSpy
 }
 
 const makeAuthUseCase = () => {
@@ -159,7 +174,8 @@ describe('Login router', () => {
   })
 
   test('Should return 400 if an invalid email is provided', async () => {
-    const { sut } = makeSut()
+    const { sut, emailValidator } = makeSut()
+    emailValidator.isEmailValid = false
 
     const httpRequest = {
       body: {
