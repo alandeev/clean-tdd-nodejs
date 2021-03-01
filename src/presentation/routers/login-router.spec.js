@@ -1,3 +1,4 @@
+const InvalidParamError = require('../helpers/invalid-param-error')
 const MissingParamError = require('../helpers/missing-param-error')
 const ServerError = require('../helpers/server-error')
 const UnauthorizedError = require('../helpers/unauthorized-error')
@@ -155,5 +156,19 @@ describe('Login router', () => {
     }
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
+  })
+
+  test('Should return 400 if an invalid email is provided', async () => {
+    const { sut } = makeSut()
+
+    const httpRequest = {
+      body: {
+        email: 'invalidmail.com',
+        password: 'any_password'
+      }
+    }
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new InvalidParamError('email'))
   })
 })
