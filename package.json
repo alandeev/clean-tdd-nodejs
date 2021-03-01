@@ -6,8 +6,8 @@
   "author": "alandev2 <alanworking1@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watchAll",
-    "test:staged": "jest",
+    "test": "jest --watchAll --silent --colors --noStackTrace",
+    "test:staged": "jest --passWithNoTests --findRelatedTests --silent --noStackTrace",
     "postinstall": "husky install"
   },
   "standard": {
