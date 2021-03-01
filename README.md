@@ -10,4 +10,4 @@ Hard    [🟧]
 ## List of tasks
 - Install and Configure Standard/Eslint-Staged/Husky  [🟨]
 - Install and Configure Jest to Test Unitary [🟨] 
-- Implements Jest to Test Unitary [Doing]
+- Implements Jest to Test Unitary [LoginRouter] [🟧]
