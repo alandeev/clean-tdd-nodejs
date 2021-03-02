@@ -1,14 +1,14 @@
-const { MissingParamError } = require('../../presentation/errors')
-const HttpResponse = require('../../presentation/helpers/http-response')
+const { MissingParamError } = require('../../utils/errors')
+// const HttpResponse = require('../../presentation/helpers/http-response')
 
 class AuthUseCase {
   async auth (email, password) {
     if (!email) {
-      return HttpResponse.badRequest(new MissingParamError('email'))
+      throw new MissingParamError('email')
     }
 
     if (!password) {
-      return HttpResponse.badRequest(new MissingParamError('password'))
+      throw new MissingParamError('password')
     }
 
     return 'access_token'
@@ -24,13 +24,13 @@ describe('Auth UseCase', () => {
     const sut = makeSut()
 
     const promise = sut.auth()
-    expect(promise).rejects.toThrow()
+    expect(promise).rejects.toThrow(new MissingParamError('email'))
   })
 
   test('Should return null if no password is provided', async () => {
     const sut = makeSut()
 
     const promise = sut.auth('any_email@mail.com')
-    expect(promise).rejects.toThrow()
+    expect(promise).rejects.toThrow(new MissingParamError('password'))
   })
 })
